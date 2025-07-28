@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: book-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/bookdb
+    username: sahil
+    password: sahil
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: user_service_schema
+
+server:
+  port: 8082

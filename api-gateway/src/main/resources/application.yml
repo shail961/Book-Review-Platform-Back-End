@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-auth
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
+
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/users/**
+          filters:
+            - name: Auth
+
+        - id: book-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/books/**
+          filters:
+            - name: Auth
+
+        - id: review-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/reviews/**
+
+      default-filters:
+        - AddResponseHeader=X-Gateway, BookReviewPlatform
+
+jwt:
+  secret: "123456789098765432345678765432345678987654567876543456789876545678987654"
