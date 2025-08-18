@@ -31,6 +31,8 @@ spring:
           uri: http://localhost:8083
           predicates:
             - Path=/reviews/**
+          filters:
+            - name: Auth
 
       default-filters:
         - AddResponseHeader=X-Gateway, BookReviewPlatform

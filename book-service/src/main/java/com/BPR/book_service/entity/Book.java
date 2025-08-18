@@ -45,6 +45,12 @@ public class Book {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+//    @Column(name = "avg_rating")
+//    private double avgRating = 0.0;
+//
+//    @Column(name = "total_reviews")
+//    private int totalReviews = 0;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = this.updatedAt = LocalDateTime.now();

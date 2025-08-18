@@ -15,7 +15,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        default_schema: user_service_schema
+        default_schema: book_service_schema
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: book-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.BPR.book_service.dtos.ReviewCreatedEvent
 
 server:
   port: 8082
