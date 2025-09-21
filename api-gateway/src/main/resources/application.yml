@@ -34,6 +34,13 @@ spring:
           filters:
             - name: Auth
 
+        - id: recommendation-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/recommendations/**
+          filters:
+            - name: Auth
+
       default-filters:
         - AddResponseHeader=X-Gateway, BookReviewPlatform
 

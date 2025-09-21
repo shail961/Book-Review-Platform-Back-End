@@ -47,15 +47,18 @@ public class BookService {
     public void handleReviewCreated(ReviewCreatedEvent event) {
         bookRepository.findById(event.getBookId()).ifPresent(book -> {
             // Update average rating
-            log.info("New Rating from Kafka: "+event.getRating());
-//            int newTotalReviews = book.getTotalReviews() + 1;
-//            double newAvgRating = ((book.getAvgRating() * book.getTotalReviews()) + event.getRating())
-//                    / newTotalReviews;
-//
-//            book.setTotalReviews(newTotalReviews);
-//            book.setAvgRating(newAvgRating);
-//
-//            bookRepository.save(book);
+            int newTotalReviews = book.getTotalReviews() + 1;
+            double newAvgRating = ((book.getAvgRating() * book.getTotalReviews()) + event.getRating())
+                    / newTotalReviews;
+
+            book.setTotalReviews(newTotalReviews);
+            book.setAvgRating(newAvgRating);
+
+            bookRepository.save(book);
         });
+    }
+
+    public List<Book> getBooksByGenre(String genre) {
+        return bookRepository.findByGenre(genre);
     }
 }

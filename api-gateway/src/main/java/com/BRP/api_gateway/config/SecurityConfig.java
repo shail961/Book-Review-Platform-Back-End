@@ -20,6 +20,7 @@ public class SecurityConfig {
                         .pathMatchers("/users/**").permitAll()
                         .pathMatchers("/books/**").permitAll()
                         .pathMatchers("/reviews/**").permitAll()
+                        .pathMatchers("/recommendations/**").permitAll()
                         .anyExchange().authenticated()
                 );
         return http.build();
